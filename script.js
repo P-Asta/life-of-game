@@ -1,9 +1,10 @@
 import init, { LifeOfGame } from './pkg/wasm_pack_pra.js'
 await init()
-let game = LifeOfGame.new(30);
+let game = LifeOfGame.new(50);
 game.draw()
 draw();
 let PUSE = 1;
+let SPEED = 100;
 
 function toggle(i, j) {
     game.toggle(i, j);
@@ -21,6 +22,17 @@ function draw() {
     })
 }
 
+document.getElementById("resize").addEventListener("click", () => {
+    PUSE = true
+    game = LifeOfGame.new(Number(prompt("Enter the size of the grid", 50)));
+    game.draw();
+})
+
+
+document.getElementById("speed").addEventListener("input", e => {
+    SPEED = e.target.value;
+})
+
 document.getElementById("puse").addEventListener("click", () => {
     PUSE = !PUSE;
     let e = document.getElementById("puse");
@@ -37,6 +49,6 @@ function loop() {
     }
     setTimeout(() => {
         requestAnimationFrame(loop);
-    }, 100);
+    }, SPEED);
 }
 loop();
