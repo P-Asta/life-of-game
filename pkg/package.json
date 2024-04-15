@@ -1,0 +1,17 @@
+{
+  "name": "wasm-pack-pra",
+  "collaborators": [
+    "5-23 <yhanbyeol6@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "wasm_pack_pra_bg.wasm",
+    "wasm_pack_pra.js",
+    "wasm_pack_pra.d.ts"
+  ],
+  "module": "wasm_pack_pra.js",
+  "types": "wasm_pack_pra.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
