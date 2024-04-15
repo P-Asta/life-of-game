@@ -4,7 +4,6 @@ let game = LifeOfGame.new(50);
 game.draw()
 draw();
 let PUSE = 1;
-let SPEED = 100;
 
 function toggle(i, j) {
     game.toggle(i, j);
@@ -13,7 +12,7 @@ function draw() {
     game.draw();
     document.querySelectorAll("div.tile").forEach((button) => {
         if (button.id.indexOf("-") != -1) {
-            button.addEventListener("click", () => {
+            button.addEventListener('click', () => {
                 let [i, j] = button.id.split("-").map(Number);
                 toggle(i, j);
                 draw();
@@ -23,14 +22,16 @@ function draw() {
 }
 
 document.getElementById("resize").addEventListener("click", () => {
-    PUSE = true
     game = LifeOfGame.new(Number(prompt("Enter the size of the grid", 50)));
     game.draw();
-})
-
-
-document.getElementById("speed").addEventListener("input", e => {
-    SPEED = e.target.value;
+    draw()
+    PUSE = 1
+    let e = document.getElementById("puse");
+    if (PUSE) {
+        e.value = "START"
+    } else {
+        e.value = "PUSE"
+    }
 })
 
 document.getElementById("puse").addEventListener("click", () => {
@@ -47,8 +48,6 @@ function loop() {
         game.step();
         draw();
     }
-    setTimeout(() => {
-        requestAnimationFrame(loop);
-    }, SPEED);
+    requestAnimationFrame(loop);
 }
 loop();
