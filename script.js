@@ -4,6 +4,7 @@ let game = LifeOfGame.new(50);
 game.draw()
 draw();
 let PUSE = 1;
+let SPEED = 100;
 
 function toggle(i, j) {
     game.toggle(i, j);
@@ -48,6 +49,7 @@ function loop() {
         game.step();
         draw();
     }
-    requestAnimationFrame(loop);
+    setTimeout(loop, SPEED);
 }
+// function setS
 loop();
