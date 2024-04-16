@@ -47,15 +47,6 @@ function getStringFromWasm0(ptr, len) {
     return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
-let cachedInt32Memory0 = null;
-
-function getInt32Memory0() {
-    if (cachedInt32Memory0 === null || cachedInt32Memory0.byteLength === 0) {
-        cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
-    }
-    return cachedInt32Memory0;
-}
-
 function isLikeNone(x) {
     return x === undefined || x === null;
 }
@@ -113,33 +104,23 @@ export class LifeOfGame {
         wasm.lifeofgame_toggle(this.__wbg_ptr, i, j);
     }
     /**
+    * @param {number} x
+    * @param {number} y
     */
-    draw() {
-        wasm.lifeofgame_draw(this.__wbg_ptr);
+    move_camera(x, y) {
+        wasm.lifeofgame_move_camera(this.__wbg_ptr, x, y);
+    }
+    /**
+    * @param {number} width
+    * @param {number} height
+    */
+    draw(width, height) {
+        wasm.lifeofgame_draw(this.__wbg_ptr, width, height);
     }
     /**
     */
     step() {
         wasm.lifeofgame_step(this.__wbg_ptr);
-    }
-    /**
-    * @returns {string}
-    */
-    render() {
-        let deferred1_0;
-        let deferred1_1;
-        try {
-            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-            wasm.lifeofgame_render(retptr, this.__wbg_ptr);
-            var r0 = getInt32Memory0()[retptr / 4 + 0];
-            var r1 = getInt32Memory0()[retptr / 4 + 1];
-            deferred1_0 = r0;
-            deferred1_1 = r1;
-            return getStringFromWasm0(r0, r1);
-        } finally {
-            wasm.__wbindgen_add_to_stack_pointer(16);
-            wasm.__wbindgen_free(deferred1_0, deferred1_1, 1);
-        }
     }
 }
 
@@ -247,7 +228,6 @@ function __wbg_init_memory(imports, maybe_memory) {
 function __wbg_finalize_init(instance, module) {
     wasm = instance.exports;
     __wbg_init.__wbindgen_wasm_module = module;
-    cachedInt32Memory0 = null;
     cachedUint8Memory0 = null;
 
 

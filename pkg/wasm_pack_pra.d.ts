@@ -21,15 +21,18 @@ export class LifeOfGame {
 */
   toggle(i: number, j: number): void;
 /**
+* @param {number} x
+* @param {number} y
 */
-  draw(): void;
+  move_camera(x: number, y: number): void;
+/**
+* @param {number} width
+* @param {number} height
+*/
+  draw(width: number, height: number): void;
 /**
 */
   step(): void;
-/**
-* @returns {string}
-*/
-  render(): string;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -39,11 +42,9 @@ export interface InitOutput {
   readonly __wbg_lifeofgame_free: (a: number) => void;
   readonly lifeofgame_new: (a: number) => number;
   readonly lifeofgame_toggle: (a: number, b: number, c: number) => void;
-  readonly lifeofgame_draw: (a: number) => void;
+  readonly lifeofgame_move_camera: (a: number, b: number, c: number) => void;
+  readonly lifeofgame_draw: (a: number, b: number, c: number) => void;
   readonly lifeofgame_step: (a: number) => void;
-  readonly lifeofgame_render: (a: number, b: number) => void;
-  readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
-  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_exn_store: (a: number) => void;
 }
 
