@@ -1,7 +1,7 @@
 import init, { LifeOfGame } from './pkg/wasm_pack_pra.js'
 await init()
 alert("move: arrow key\npuse: space");
-let game = LifeOfGame.new(50);
+let game = LifeOfGame.new();
 
 draw();
 let PUSE = 1;

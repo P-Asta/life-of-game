@@ -11,10 +11,9 @@ export enum Cell {
 export class LifeOfGame {
   free(): void;
 /**
-* @param {number} size
 * @returns {LifeOfGame}
 */
-  static new(size: number): LifeOfGame;
+  static new(): LifeOfGame;
 /**
 * @param {number} i
 * @param {number} j
@@ -40,7 +39,7 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_lifeofgame_free: (a: number) => void;
-  readonly lifeofgame_new: (a: number) => number;
+  readonly lifeofgame_new: () => number;
   readonly lifeofgame_toggle: (a: number, b: number, c: number) => void;
   readonly lifeofgame_move_camera: (a: number, b: number, c: number) => void;
   readonly lifeofgame_draw: (a: number, b: number, c: number) => void;

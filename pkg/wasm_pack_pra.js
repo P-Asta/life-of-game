@@ -89,11 +89,10 @@ export class LifeOfGame {
         wasm.__wbg_lifeofgame_free(ptr);
     }
     /**
-    * @param {number} size
     * @returns {LifeOfGame}
     */
-    static new(size) {
-        const ret = wasm.lifeofgame_new(size);
+    static new() {
+        const ret = wasm.lifeofgame_new();
         return LifeOfGame.__wrap(ret);
     }
     /**

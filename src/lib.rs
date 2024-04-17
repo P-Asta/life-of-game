@@ -12,21 +12,6 @@ pub enum Cell {
     Dead = 0,
     Alive = 1,
 }
-impl Cell {
-    pub fn toggle(&mut self) {
-        *self = match *self {
-            Cell::Dead => Cell::Alive,
-            Cell::Alive => Cell::Dead,
-        }
-    }
-    pub fn parse_int(&self) -> u8 {
-        match self {
-            Cell::Dead => 0,
-            Cell::Alive => 1,
-        }
-    }
-}
-
 #[wasm_bindgen]
 pub struct LifeOfGame {
     alives: Vec<(isize, isize)>,
@@ -35,7 +20,7 @@ pub struct LifeOfGame {
 
 #[wasm_bindgen]
 impl LifeOfGame {
-    pub fn new(size: isize) -> Self {
+    pub fn new() -> Self {
         Self {
             alives: vec![],
             camera: (0, 0),
